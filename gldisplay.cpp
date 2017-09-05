@@ -22,6 +22,8 @@ void GLDisplay::paintGL()
     glRotatef(_angle, 0.0f, 1.0f, 0.0f);
 
     //gasket.draw();
+    mesh.draw();
+
 }
 
 void GLDisplay::resizeGL(int w, int h)

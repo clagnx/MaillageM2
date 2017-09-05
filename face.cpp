@@ -1,5 +1,6 @@
 #include <face.h>
 #include <GL/gl.h>
+#include<iostream>
 
 Face::Face(){
     this->p1 = new Point();
@@ -15,6 +16,8 @@ Face::Face(Point* p1, Point* p2, Point* p3){
 
 void Face::draw(){
     glBegin(GL_POINTS);
+
+    std::cout<<getP1()->getX()<<std::endl;
 
     glVertex3f(getP1()->getX(), getP1()->getY(),  getP1()->getZ());
     glVertex3f(getP2()->getX(), getP2()->getY(),  getP2()->getZ());

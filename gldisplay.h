@@ -3,6 +3,7 @@
 
 #include <QGLWidget>
 #include <QMouseEvent>
+#include "mesh.h"
 
 class GLDisplay : public QGLWidget
 {
@@ -23,6 +24,7 @@ protected:
 private:
     void drawSierpinski();
     //Gasket gasket;
+    Mesh mesh;
 
     float _angle;
     QPoint _position;
