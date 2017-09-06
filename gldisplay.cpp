@@ -1,4 +1,5 @@
 #include "gldisplay.h"
+#include <iostream>
 
 GLDisplay::GLDisplay(QWidget *parent) :
     QGLWidget(parent),
