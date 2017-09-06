@@ -15,18 +15,22 @@ Face::Face(Point* p1, Point* p2, Point* p3){
 }
 
 void Face::draw(){
-    glBegin(GL_POINTS);
+    glBegin(GL_LINE_LOOP);
 
-    std::cout<<getP2()->getX()<<std::endl;
+    //Dessin des trois vecteurs de la face
 
     glVertex3f(getP1()->getX(), getP1()->getY(),  getP1()->getZ());
-    glVertex3f(getP2()->getX(), getP2()->getY(),  getP2()->getZ());
-    glVertex3f(getP3()-> getX(), getP3()-> getY(),  getP3()->getZ());
+    //glVertex3f(getP2()->getX(), getP2()->getY(),  getP2()->getZ());
 
-   /* glVertex3f(0.0, 0.0,  0.0);
-    glVertex3f(1.0, 1.0,  0.0);
-    glVertex3f(2.0, 2.0,  0.0);
-*/
+    glVertex3f(getP2()->getX(), getP2()->getY(),  getP2()->getZ());
+    //glVertex3f(getP3()-> getX(), getP3()-> getY(),  getP3()->getZ());
+
+
+    glVertex3f(getP3()-> getX(), getP3()-> getY(),  getP3()->getZ());
+    //glVertex3f(getP1()->getX(), getP1()->getY(),  getP1()->getZ());
+
+
+
     glEnd();
 }
 
