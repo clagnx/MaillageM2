@@ -1,24 +1,30 @@
 #ifndef FACE
 #define FACE
 #include <point.h>
+#include <vector>
 
 
 class Face{
 public:
     Face();
-    Face(Point* p1, Point* p2, Point* p3);
+    Face(int nombrePoints);
+    Face(std::vector<Point*> vectorPointsToCopy);
     Face operator=(Face f);
 
 
-    Point* getP1();
-    Point* getP2();
-    Point* getP3();
+    Point* getPoint(int index);
+    std::vector<Point*> getTabPoint();
     void draw();
 
+    int getNombrePoints();
+
 private:
-    Point* p1;
+    int nombrePoints;
+    std::vector<Point* > vectorPoint;
+   // Point* tabPoints[];
+   /* Point* p1;
     Point* p2;
-    Point* p3;
+    Point* p3;*/
 };
 
 #endif // FACES

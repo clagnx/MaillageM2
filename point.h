@@ -6,6 +6,7 @@ public:
     Point();
     Point(double x, double y, double z);
 
+
     Point operator=(Point p);
     void draw();
     double getX();

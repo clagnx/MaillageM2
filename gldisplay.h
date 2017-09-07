@@ -24,7 +24,7 @@ protected:
 private:
     void drawSierpinski();
     //Gasket gasket;
-    Mesh mesh;
+    Mesh mesh = Mesh("queen.off");
 
     float _angle;
     QPoint _position;
