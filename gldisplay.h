@@ -23,8 +23,8 @@ protected:
 
 private:
     void drawSierpinski();
-    Mesh mesh;
-//    Mesh mesh = Mesh("queen.off");
+//    Mesh mesh;
+    Mesh mesh = Mesh("queen.off");
 
     float _angle;
     QPoint _position;

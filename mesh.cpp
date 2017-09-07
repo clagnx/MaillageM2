@@ -30,7 +30,7 @@ Mesh::Mesh(const char* c){
     std::ifstream fichier(c, std::ios::in);
     unsigned int nbsom, nbface, normals;
     float x,y,z;
-    std::vector<Point*> vecpoint;
+    std::vector<Point *> vecpoint;
     if(!fichier)
     {
         std::cerr << "Can not open " << c << " !" << std::endl;
@@ -50,12 +50,44 @@ Mesh::Mesh(const char* c){
         vecpoint.push_back(new Point(x,y,z));
     }
 
-    fichier.close();
+    // chargement des faces
+    for(unsigned int i = 0; i < nbface ; i++)
+    {
+        int nb, a, b, c, d;
+        fichier >> nb;
+        std::vector<Point *> vecadd;
+        Face* f;
+        switch (nb) {
+        case 3:
+            fichier >> a >> b >> c;
+            vecadd.push_back(vecpoint[a]);
+            vecadd.push_back(vecpoint[b]);
+            vecadd.push_back(vecpoint[c]);
+            f = new Face(vecadd);
+            vectFace.push_back(*f);
+            break;
+        case 4:
+            fichier >> a >> b >> c >> d;
+            vecadd.push_back(vecpoint[a]);
+            vecadd.push_back(vecpoint[b]);
+            vecadd.push_back(vecpoint[c]);
+            vecadd.push_back(vecpoint[d]);
+            f = new Face(vecadd);
+            vectFace.push_back(*f);
+            break;
+        default:
+            fichier >> a >> b >> c;
+            vecadd.push_back(vecpoint[a]);
+            vecadd.push_back(vecpoint[b]);
+            vecadd.push_back(vecpoint[c]);
+            f = new Face(vecadd);
+            vectFace.push_back(*f);
+            break;
+        }
 
-//    std::cout << vecpoint(0)->getX() << std::endl;
-//    for(unsigned int i = 0; i < vecpoint.size()-2;i++){
-//        //vectFace.push_back(Face(vecpoint(i),vecpoint(i+1),vecpoint(i+2)));
-//    }
+    }
+
+    fichier.close();
 
 }
 
