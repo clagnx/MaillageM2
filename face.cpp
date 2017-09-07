@@ -2,16 +2,24 @@
 #include <GL/gl.h>
 #include<iostream>
 
-Face::Face(){
-    this->p1 = new Point();
+Face::Face(int nombrPoints){
+    /*this->p1 = new Point();
     this->p2 = new Point();
-    this->p3 = new Point();
+    this->p3 = new Point();*/
+    nombrePoints = nombrPoints;
+    //Point * tab[nombrPoints];
+    //tabPoints = tab;
 }
 
-Face::Face(Point* p1, Point* p2, Point* p3){
-    this->p1 = p1;
-    this->p2 = p2;
-    this->p3 = p3;
+Face::Face(std::vector<Point*> vectorPointsToCopy){
+    nombrePoints = vectorPointsToCopy.size();
+    this->vectorPoint = vectorPointsToCopy;
+
+}
+
+int Face::getNombrePoints(){
+    std::cout<<"get nombre point : "<<this->nombrePoints<<std::endl;
+    return this->nombrePoints;
 }
 
 void Face::draw(){
@@ -19,36 +27,28 @@ void Face::draw(){
 
     //Dessin des trois vecteurs de la face
 
-    glVertex3f(getP1()->getX(), getP1()->getY(),  getP1()->getZ());
-    //glVertex3f(getP2()->getX(), getP2()->getY(),  getP2()->getZ());
-
-    glVertex3f(getP2()->getX(), getP2()->getY(),  getP2()->getZ());
-    //glVertex3f(getP3()-> getX(), getP3()-> getY(),  getP3()->getZ());
-
-
-    glVertex3f(getP3()-> getX(), getP3()-> getY(),  getP3()->getZ());
-    //glVertex3f(getP1()->getX(), getP1()->getY(),  getP1()->getZ());
+    for(int i = 0; i< nombrePoints; i ++){
+        Point * p = getPoint(i);
+        glVertex3f(p->getX(), p->getY(), p->getZ());
+    }
 
 
 
     glEnd();
 }
 
-Point* Face::getP1(){
-    return p1;
+Point* Face::getPoint(int index){
+    return vectorPoint[index];
 }
 
-Point* Face::getP2(){
-    return p2;
-}
 
-Point* Face::getP3(){
-    return p3;
+std::vector<Point*> Face::getTabPoint(){
+    return vectorPoint;
 }
 
 
 Face Face::operator=(Face f){
-    return Face(f.getP1(),f.getP2(), f.getP3() );
+    return Face(f.getTabPoint());
 }
 
 

@@ -17,12 +17,16 @@ SOURCES += main.cpp\
     point.cpp \
     face.cpp \
     gldisplay.cpp \
-    mesh.cpp
+    mesh.cpp \
+    triangle.cpp \
+    carre.cpp
 
 HEADERS  += mainwindow.h \
     point.h \
     face.h \
     gldisplay.h \
-    mesh.h
+    mesh.h \
+    triangle.h \
+    carre.h
 
 FORMS    += mainwindow.ui
