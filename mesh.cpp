@@ -2,7 +2,10 @@
 #include <GL/gl.h>
 #include <cstdlib>
 #include <time.h>
-
+#include <string>
+#include <fstream>
+#include <vector>
+#include <iostream>
 
 
 Mesh::Mesh(){
@@ -12,6 +15,39 @@ Mesh::Mesh(){
     Point* p3 = new Point(0.0, 1.0, 0.0);
     Face* f = new Face(p1, p2, p3);
     vectFace.push_back(*f);
+}
+
+Mesh::Mesh(const char* c){
+    std::ifstream fichier(c, std::ios::in);
+    unsigned int nbsom, nbface, normals;
+    float x,y,z;
+    std::vector<Point*> vecpoint;
+    if(!fichier)
+    {
+        std::cerr << "Can not open " << c << " !" << std::endl;
+        exit(1);
+    }
+
+    std::string contenu;
+    fichier >> contenu;
+
+    // details du maillage
+    fichier >> nbsom >> nbface >> normals;
+
+    // chargement des vertex
+    for(unsigned int i = 0; i < nbsom ; i++)
+    {
+        fichier >> x >> y >> z;
+        vecpoint.push_back(new Point(x,y,z));
+    }
+
+    fichier.close();
+
+//    std::cout << vecpoint(0)->getX() << std::endl;
+//    for(unsigned int i = 0; i < vecpoint.size()-2;i++){
+//        //vectFace.push_back(Face(vecpoint(i),vecpoint(i+1),vecpoint(i+2)));
+//    }
+
 }
 
 void Mesh::addFace(Face f){
