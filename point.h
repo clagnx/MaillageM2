@@ -1,6 +1,7 @@
 #ifndef POINT
 #define POINT
 
+
 class Point {
 public:
     Point();
@@ -13,10 +14,12 @@ public:
     double getY();
     double getZ();
 
+
 private:
     double x;
     double y;
     double z;
+
 
 };
 

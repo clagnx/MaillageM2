@@ -51,5 +51,14 @@ Face Face::operator=(Face f){
     return Face(f.getTabPoint());
 }
 
+void Face::setFaceAdjacente(Face *f){
+    this->FaceAdjacente = f;
+}
+
+
+Face * Face::getFaceAdjacente(){
+    return FaceAdjacente;
+}
+
 
 

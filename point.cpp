@@ -1,5 +1,6 @@
 #include <point.h>
 
+
 Point::Point(){
 
 }
@@ -31,3 +32,4 @@ double Point::getZ(){
 Point Point::operator=(Point p){
     return Point(p.getX(), p.getY(), p.getZ());
 }
+

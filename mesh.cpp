@@ -22,8 +22,14 @@ Mesh::Mesh(){
     vect.push_back(p4);
 
    std::cout<<"vect sozr : "<<vect.size()<<std::endl;
+
     Face* f = new Face(vect);
     vectFace.push_back(*f);
+
+    vectSommet.push_back(new Sommet(f, p1));
+    vectSommet.push_back(new Sommet(f, p2));
+    vectSommet.push_back(new Sommet(f, p3));
+    vectSommet.push_back(new Sommet(f, p4));
 }
 
 Mesh::Mesh(const char* c){
@@ -65,6 +71,10 @@ Mesh::Mesh(const char* c){
             vecadd.push_back(vecpoint[c]);
             f = new Face(vecadd);
             vectFace.push_back(*f);
+
+            vectSommet.push_back(new Sommet(f, vecpoint[a]));
+            vectSommet.push_back(new Sommet(f, vecpoint[b]));
+            vectSommet.push_back(new Sommet(f, vecpoint[c]));
             break;
         case 4:
             fichier >> a >> b >> c >> d;
@@ -74,6 +84,11 @@ Mesh::Mesh(const char* c){
             vecadd.push_back(vecpoint[d]);
             f = new Face(vecadd);
             vectFace.push_back(*f);
+
+            vectSommet.push_back(new Sommet(f, vecpoint[a]));
+            vectSommet.push_back(new Sommet(f, vecpoint[b]));
+            vectSommet.push_back(new Sommet(f, vecpoint[c]));
+            vectSommet.push_back(new Sommet(f, vecpoint[d]));
             break;
         default:
             fichier >> a >> b >> c;
@@ -82,6 +97,10 @@ Mesh::Mesh(const char* c){
             vecadd.push_back(vecpoint[c]);
             f = new Face(vecadd);
             vectFace.push_back(*f);
+
+            vectSommet.push_back(new Sommet(f, vecpoint[a]));
+            vectSommet.push_back(new Sommet(f, vecpoint[b]));
+            vectSommet.push_back(new Sommet(f, vecpoint[c]));
             break;
         }
 

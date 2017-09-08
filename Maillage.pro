@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     gldisplay.cpp \
     mesh.cpp \
     triangle.cpp \
-    carre.cpp
+    carre.cpp \
+    sommet.cpp
 
 HEADERS  += mainwindow.h \
     point.h \
@@ -27,6 +28,7 @@ HEADERS  += mainwindow.h \
     gldisplay.h \
     mesh.h \
     triangle.h \
-    carre.h
+    carre.h \
+    sommet.h
 
 FORMS    += mainwindow.ui

@@ -17,14 +17,13 @@ public:
     void draw();
 
     int getNombrePoints();
+    void setFaceAdjacente(Face * f);
+    Face * getFaceAdjacente();
 
 private:
     int nombrePoints;
     std::vector<Point* > vectorPoint;
-   // Point* tabPoints[];
-   /* Point* p1;
-    Point* p2;
-    Point* p3;*/
+    Face * FaceAdjacente;
 };
 
 #endif // FACES
