@@ -9,6 +9,7 @@ public:
 
 
     Point operator=(Point p);
+    bool operator==(Point p);
     void draw();
     double getX();
     double getY();

@@ -9,6 +9,7 @@
 
 
 
+
 Mesh::Mesh(){
     //vectFace = new std::vector<Face>();
     Point* p1 = new Point(0.0, 0.0, 0.0);
@@ -72,9 +73,22 @@ Mesh::Mesh(const char* c){
             f = new Face(vecadd);
             vectFace.push_back(*f);
 
-            vectSommet.push_back(new Sommet(f, vecpoint[a]));
-            vectSommet.push_back(new Sommet(f, vecpoint[b]));
-            vectSommet.push_back(new Sommet(f, vecpoint[c]));
+            if(int inda = ifpointexist(vecpoint[a]) == -1){
+                vectSommet.push_back(new Sommet(f, vecpoint[a]));
+            }else{
+                vectSommet[inda]->setFaceAdjacente(f);
+            }
+            if(int indb = ifpointexist(vecpoint[b]) == -1){
+                vectSommet.push_back(new Sommet(f, vecpoint[b]));
+            }else{
+                vectSommet[indb]->setFaceAdjacente(f);
+            }
+            if(int indc = ifpointexist(vecpoint[c]) == -1){
+                vectSommet.push_back(new Sommet(f, vecpoint[c]));
+            }else{
+                vectSommet[indc]->setFaceAdjacente(f);
+            }
+
             break;
         case 4:
             fichier >> a >> b >> c >> d;
@@ -123,5 +137,15 @@ void Mesh::draw(){
 
     //glEnd();
 
+}
+
+int Mesh::ifpointexist(Point *p){
+    int ind = -1;
+    for(unsigned int i=0; i < vectSommet.size(); i++){
+        if(vectSommet[i]->getpoint() == p){
+            ind = i;
+        }
+    }
+    return ind;
 }
 

@@ -3,6 +3,7 @@
 
 #include<face.h>
 #include<point.h>
+#include<vector>
 
 class Sommet {
 public:
@@ -11,6 +12,7 @@ public:
 
     void setFaceAdjacente(Face* f);
     Face* getFaceAdjacente();
+    Point * getpoint();
 
 
 

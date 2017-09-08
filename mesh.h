@@ -6,6 +6,7 @@
 #include <iostream>
 #include<sommet.h>
 #include<iterator>
+#include <point.h>
 
 #define NUMBERFACES 56
 
@@ -24,6 +25,8 @@ class Mesh {
         void addFace(Face f);
         void draw();
         void addSommet(Sommet* s);
+        int ifpointexist(Point *p);
+
     private:
         std::vector<Face> vectFace;
         std::vector<Sommet *> vectSommet;
