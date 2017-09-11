@@ -78,15 +78,15 @@ Mesh::Mesh(const char* c){
             f = new Face(vecadd);
             vectFace.push_back(*f);
 
-//            if(ifpointexist(vectPoint[a]) == -1){
-//                vectSommet.push_back(Sommet(vectFace.size()-1, a));
-//            }
-//            if(ifpointexist(vectPoint[b]) == -1){
-//                vectSommet.push_back(Sommet(vectFace.size()-1, b));
-//            }
-//            if(ifpointexist(vectPoint[c]) == -1){
-//                vectSommet.push_back(Sommet(vectFace.size()-1, c));
-//            }
+            if(!ifpointexist(a)){
+                vectSommet.push_back(Sommet(vectFace.size()-1, a));
+            }
+            if(!ifpointexist(b)){
+                vectSommet.push_back(Sommet(vectFace.size()-1, b));
+            }
+            if(!ifpointexist(c)){
+                vectSommet.push_back(Sommet(vectFace.size()-1, c));
+            }
 
             break;
         case 4:
@@ -98,18 +98,18 @@ Mesh::Mesh(const char* c){
             f = new Face(vecadd);
             vectFace.push_back(*f);
 
-//            if(ifpointexist(vectPoint[a]) == -1){
-//                vectSommet.push_back(Sommet(vectFace.size()-1, a));
-//            }
-//            if(ifpointexist(vectPoint[b]) == -1){
-//                vectSommet.push_back(Sommet(vectFace.size()-1, b));
-//            }
-//            if(ifpointexist(vectPoint[c]) == -1){
-//                vectSommet.push_back(Sommet(vectFace.size()-1, c));
-//            }
-//            if(ifpointexist(vectPoint[d]) == -1){
-//                vectSommet.push_back(Sommet(vectFace.size()-1, d));
-//            }
+            if(!ifpointexist(a)){
+                vectSommet.push_back(Sommet(vectFace.size()-1, a));
+            }
+            if(!ifpointexist(b)){
+                vectSommet.push_back(Sommet(vectFace.size()-1, b));
+            }
+            if(!ifpointexist(c)){
+                vectSommet.push_back(Sommet(vectFace.size()-1, c));
+            }
+            if(!ifpointexist(d)){
+                vectSommet.push_back(Sommet(vectFace.size()-1, d));
+            }
             break;
         default:
             fichier >> a >> b >> c;
@@ -119,15 +119,15 @@ Mesh::Mesh(const char* c){
             f = new Face(vecadd);
             vectFace.push_back(*f);
 
-//            if(ifpointexist(vectPoint[a]) == -1){
-//                vectSommet.push_back(Sommet(vectFace.size()-1, a));
-//            }
-//            if(ifpointexist(vectPoint[b]) == -1){
-//                vectSommet.push_back(Sommet(vectFace.size()-1, b));
-//            }
-//            if(ifpointexist(vectPoint[c]) == -1){
-//                vectSommet.push_back(Sommet(vectFace.size()-1, c));
-//            }
+            if(!ifpointexist(a)){
+                vectSommet.push_back(Sommet(vectFace.size()-1, a));
+            }
+            if(!ifpointexist(b)){
+                vectSommet.push_back(Sommet(vectFace.size()-1, b));
+            }
+            if(!ifpointexist(c)){
+                vectSommet.push_back(Sommet(vectFace.size()-1, c));
+            }
             break;
         }
 
@@ -142,10 +142,8 @@ void Mesh::addFace(Face f){
 }
 
 void Mesh::draw(){
-    //glBegin(GL_POINTS);
 
     for(unsigned int i = 0; i < vectFace.size(); i++ ) {
-        //vectFace[i].draw();
         glBegin(GL_LINE_LOOP);
 
         //Dessin des trois vecteurs de la face
@@ -154,23 +152,17 @@ void Mesh::draw(){
             Point p = vectPoint[vectFace[i].getPoint(j)];
             glVertex3f(p.getX(), p.getY(), p.getZ());
         }
-
-
-
         glEnd();
     }
 
-    //glEnd();
-
 }
 
-int Mesh::ifpointexist(Point p){
-    int ind = -1;
-    for(unsigned int i=0; i < vectPoint.size(); i++){
-        if(vectPoint[i] == p){
-            ind = i;
+bool Mesh::ifpointexist(unsigned int ind){
+    for(unsigned int i=0; i < vectSommet.size(); i++){
+        if(vectSommet[i].getpoint() == ind){
+            return true;
         }
     }
-    return ind;
+    return false;
 }
 

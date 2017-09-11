@@ -25,7 +25,7 @@ class Mesh {
         void addFace(Face f);
         void draw();
         void addSommet(Sommet* s);
-        int ifpointexist(Point p);
+        bool ifpointexist(unsigned int ind);
 
     private:
         std::vector<Face> vectFace;
