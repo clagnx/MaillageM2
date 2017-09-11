@@ -25,12 +25,12 @@ class Mesh {
         void addFace(Face f);
         void draw();
         void addSommet(Sommet* s);
-        int ifpointexist(Point *p);
+        int ifpointexist(Point p);
 
     private:
         std::vector<Face> vectFace;
-        std::vector<Sommet *> vectSommet;
-        std::vector<Point *> vectPoint;
+        std::vector<Sommet> vectSommet;
+        std::vector<Point> vectPoint;
 };
 
 #endif // MESH

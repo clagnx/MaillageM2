@@ -12,36 +12,37 @@
 
 Mesh::Mesh(){
     //vectFace = new std::vector<Face>();
-    Point* p1 = new Point(0.0, 0.0, 0.0);
-    Point* p2 = new Point(1.0, 1.0, 0.0);
-    Point* p3 = new Point(0.0, 1.0, 0.0);
-    Point* p4 = new Point(1.0, 0.0, 0.0);
-    std::vector<Point *> vect;
-    vect.push_back(p1);
-    vect.push_back(p3);
-    vect.push_back(p2);
-    vect.push_back(p4);
+    Point p1 = Point(0.0, 0.0, 0.0);
+    Point p2 = Point(1.0, 1.0, 0.0);
+    Point p3 = Point(0.0, 1.0, 0.0);
+    Point p4 = Point(1.0, 0.0, 0.0);
     vectPoint.push_back(p1);
     vectPoint.push_back(p3);
     vectPoint.push_back(p2);
     vectPoint.push_back(p4);
+
+    std::vector<unsigned int> vect;
+    vect.push_back(1);
+    vect.push_back(3);
+    vect.push_back(2);
+    vect.push_back(4);
 
    std::cout<<"vect sozr : "<<vect.size()<<std::endl;
 
     Face* f = new Face(vect);
     vectFace.push_back(*f);
 
-    vectSommet.push_back(new Sommet(vectFace.size()-1, 1));
-    vectSommet.push_back(new Sommet(vectFace.size()-1, 2));
-    vectSommet.push_back(new Sommet(vectFace.size()-1, 3));
-    vectSommet.push_back(new Sommet(vectFace.size()-1, 4));
+    vectSommet.push_back(Sommet(vectFace.size()-1, 1));
+    vectSommet.push_back(Sommet(vectFace.size()-1, 2));
+    vectSommet.push_back(Sommet(vectFace.size()-1, 3));
+    vectSommet.push_back(Sommet(vectFace.size()-1, 4));
 }
 
 Mesh::Mesh(const char* c){
     std::ifstream fichier(c, std::ios::in);
     unsigned int nbsom, nbface, normals;
     float x,y,z;
-    std::vector<Point *> vecpoint;
+//    std::vector<Point *> vectPoint;
     if(!fichier)
     {
         std::cerr << "Can not open " << c << " !" << std::endl;
@@ -58,7 +59,7 @@ Mesh::Mesh(const char* c){
     for(unsigned int i = 0; i < nbsom ; i++)
     {
         fichier >> x >> y >> z;
-        vecpoint.push_back(new Point(x,y,z));
+        vectPoint.push_back(Point(x,y,z));
     }
 
     // chargement des faces
@@ -66,67 +67,67 @@ Mesh::Mesh(const char* c){
     {
         int nb, a, b, c, d;
         fichier >> nb;
-        std::vector<Point *> vecadd;
+        std::vector<unsigned int> vecadd;
         Face* f;
         switch (nb) {
         case 3:
             fichier >> a >> b >> c;
-            vecadd.push_back(vecpoint[a]);
-            vecadd.push_back(vecpoint[b]);
-            vecadd.push_back(vecpoint[c]);
+            vecadd.push_back(a);
+            vecadd.push_back(b);
+            vecadd.push_back(c);
             f = new Face(vecadd);
             vectFace.push_back(*f);
 
-            if(ifpointexist(vecpoint[a]) == -1){
-                vectSommet.push_back(new Sommet(vectFace.size()-1, a));
-            }
-            if(ifpointexist(vecpoint[b]) == -1){
-                vectSommet.push_back(new Sommet(vectFace.size()-1, b));
-            }
-            if(ifpointexist(vecpoint[c]) == -1){
-                vectSommet.push_back(new Sommet(vectFace.size()-1, c));
-            }
+//            if(ifpointexist(vectPoint[a]) == -1){
+//                vectSommet.push_back(Sommet(vectFace.size()-1, a));
+//            }
+//            if(ifpointexist(vectPoint[b]) == -1){
+//                vectSommet.push_back(Sommet(vectFace.size()-1, b));
+//            }
+//            if(ifpointexist(vectPoint[c]) == -1){
+//                vectSommet.push_back(Sommet(vectFace.size()-1, c));
+//            }
 
             break;
         case 4:
             fichier >> a >> b >> c >> d;
-            vecadd.push_back(vecpoint[a]);
-            vecadd.push_back(vecpoint[b]);
-            vecadd.push_back(vecpoint[c]);
-            vecadd.push_back(vecpoint[d]);
+            vecadd.push_back(a);
+            vecadd.push_back(b);
+            vecadd.push_back(c);
+            vecadd.push_back(d);
             f = new Face(vecadd);
             vectFace.push_back(*f);
 
-            if(ifpointexist(vecpoint[a]) == -1){
-                vectSommet.push_back(new Sommet(vectFace.size()-1, a));
-            }
-            if(ifpointexist(vecpoint[b]) == -1){
-                vectSommet.push_back(new Sommet(vectFace.size()-1, b));
-            }
-            if(ifpointexist(vecpoint[c]) == -1){
-                vectSommet.push_back(new Sommet(vectFace.size()-1, c));
-            }
-            if(ifpointexist(vecpoint[d]) == -1){
-                vectSommet.push_back(new Sommet(vectFace.size()-1, d));
-            }
+//            if(ifpointexist(vectPoint[a]) == -1){
+//                vectSommet.push_back(Sommet(vectFace.size()-1, a));
+//            }
+//            if(ifpointexist(vectPoint[b]) == -1){
+//                vectSommet.push_back(Sommet(vectFace.size()-1, b));
+//            }
+//            if(ifpointexist(vectPoint[c]) == -1){
+//                vectSommet.push_back(Sommet(vectFace.size()-1, c));
+//            }
+//            if(ifpointexist(vectPoint[d]) == -1){
+//                vectSommet.push_back(Sommet(vectFace.size()-1, d));
+//            }
             break;
         default:
             fichier >> a >> b >> c;
-            vecadd.push_back(vecpoint[a]);
-            vecadd.push_back(vecpoint[b]);
-            vecadd.push_back(vecpoint[c]);
+            vecadd.push_back(a);
+            vecadd.push_back(b);
+            vecadd.push_back(c);
             f = new Face(vecadd);
             vectFace.push_back(*f);
 
-            if(ifpointexist(vecpoint[a]) == -1){
-                vectSommet.push_back(new Sommet(vectFace.size()-1, a));
-            }
-            if(ifpointexist(vecpoint[b]) == -1){
-                vectSommet.push_back(new Sommet(vectFace.size()-1, b));
-            }
-            if(ifpointexist(vecpoint[c]) == -1){
-                vectSommet.push_back(new Sommet(vectFace.size()-1, c));
-            }
+//            if(ifpointexist(vectPoint[a]) == -1){
+//                vectSommet.push_back(Sommet(vectFace.size()-1, a));
+//            }
+//            if(ifpointexist(vectPoint[b]) == -1){
+//                vectSommet.push_back(Sommet(vectFace.size()-1, b));
+//            }
+//            if(ifpointexist(vectPoint[c]) == -1){
+//                vectSommet.push_back(Sommet(vectFace.size()-1, c));
+//            }
             break;
         }
 
@@ -144,14 +145,26 @@ void Mesh::draw(){
     //glBegin(GL_POINTS);
 
     for(unsigned int i = 0; i < vectFace.size(); i++ ) {
-        vectFace[i].draw();
+        //vectFace[i].draw();
+        glBegin(GL_LINE_LOOP);
+
+        //Dessin des trois vecteurs de la face
+
+        for(int j = 0; j< vectFace[i].getNombrePoints(); j ++){
+            Point p = vectPoint[vectFace[i].getPoint(j)];
+            glVertex3f(p.getX(), p.getY(), p.getZ());
+        }
+
+
+
+        glEnd();
     }
 
     //glEnd();
 
 }
 
-int Mesh::ifpointexist(Point *p){
+int Mesh::ifpointexist(Point p){
     int ind = -1;
     for(unsigned int i=0; i < vectPoint.size(); i++){
         if(vectPoint[i] == p){

@@ -8,12 +8,12 @@ class Face{
 public:
     Face();
     Face(int nombrePoints);
-    Face(std::vector<Point*> vectorPointsToCopy);
+    Face(std::vector<unsigned int> vectorPointsToCopy);
     Face operator=(Face f);
 
 
-    Point* getPoint(int index);
-    std::vector<Point*> getTabPoint();
+    unsigned int getPoint(int index);
+    std::vector<unsigned int> getTabPoint();
     void draw();
 
     int getNombrePoints();
@@ -22,7 +22,7 @@ public:
 
 private:
     int nombrePoints;
-    std::vector<Point* > vectorPoint;
+    std::vector<unsigned int> IndPoint;
     std::vector<unsigned int> IndFaceAdjacente;
 };
 

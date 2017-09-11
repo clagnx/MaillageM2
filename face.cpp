@@ -11,14 +11,13 @@ Face::Face(int nombrPoints){
     //tabPoints = tab;
 }
 
-Face::Face(std::vector<Point*> vectorPointsToCopy){
+Face::Face(std::vector<unsigned int> vectorPointsToCopy){
     nombrePoints = vectorPointsToCopy.size();
-    this->vectorPoint = vectorPointsToCopy;
+    this->IndPoint = vectorPointsToCopy;
 
 }
 
 int Face::getNombrePoints(){
-    std::cout<<"get nombre point : "<<this->nombrePoints<<std::endl;
     return this->nombrePoints;
 }
 
@@ -27,23 +26,23 @@ void Face::draw(){
 
     //Dessin des trois vecteurs de la face
 
-    for(int i = 0; i< nombrePoints; i ++){
-        Point * p = getPoint(i);
-        glVertex3f(p->getX(), p->getY(), p->getZ());
-    }
+//    for(int i = 0; i< nombrePoints; i ++){
+//        Point * p = getPoint(i);
+//        glVertex3f(p->getX(), p->getY(), p->getZ());
+//    }
 
 
 
     glEnd();
 }
 
-Point* Face::getPoint(int index){
-    return vectorPoint[index];
+unsigned int Face::getPoint(int index){
+    return IndPoint[index];
 }
 
 
-std::vector<Point*> Face::getTabPoint(){
-    return vectorPoint;
+std::vector<unsigned int> Face::getTabPoint(){
+    return IndPoint;
 }
 
 
