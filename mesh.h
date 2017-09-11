@@ -30,6 +30,7 @@ class Mesh {
     private:
         std::vector<Face> vectFace;
         std::vector<Sommet *> vectSommet;
+        std::vector<Point *> vectPoint;
 };
 
 #endif // MESH

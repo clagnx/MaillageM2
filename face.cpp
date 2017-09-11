@@ -51,13 +51,13 @@ Face Face::operator=(Face f){
     return Face(f.getTabPoint());
 }
 
-void Face::setFaceAdjacente(Face *f){
-    this->FaceAdjacente = f;
+void Face::setFaceAdjacente(unsigned int ind){
+    this->IndFaceAdjacente.push_back(ind);
 }
 
 
-Face * Face::getFaceAdjacente(){
-    return FaceAdjacente;
+std::vector<unsigned int> Face::getFaceAdjacente(){
+    return IndFaceAdjacente;
 }
 
 

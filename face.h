@@ -17,13 +17,13 @@ public:
     void draw();
 
     int getNombrePoints();
-    void setFaceAdjacente(Face * f);
-    Face * getFaceAdjacente();
+    void setFaceAdjacente(unsigned int i);
+    std::vector<unsigned int> getFaceAdjacente();
 
 private:
     int nombrePoints;
     std::vector<Point* > vectorPoint;
-    Face * FaceAdjacente;
+    std::vector<unsigned int> IndFaceAdjacente;
 };
 
 #endif // FACES

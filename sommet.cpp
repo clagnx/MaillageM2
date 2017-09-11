@@ -4,19 +4,19 @@ Sommet::Sommet(){
 
 }
 
-Sommet::Sommet(Face *f, Point *p){
-    this->faceAdjacente = new Face(f->getTabPoint());
-    this->PointAdjacent = p;
+Sommet::Sommet(unsigned int indf, unsigned int indp){
+    this->indFaceAdjacente = indf;
+    this->indPointAdjacent = indp;
 }
 
-void Sommet::setFaceAdjacente(Face *f){
-    faceAdjacente = new Face(f->getTabPoint());
+void Sommet::setFaceAdjacente(unsigned int indf){
+    indFaceAdjacente = indf;
 }
 
-Face* Sommet::getFaceAdjacente(){
-    return this->faceAdjacente;
+unsigned int Sommet::getFaceAdjacente(){
+    return this->indFaceAdjacente;
 }
 
-Point * Sommet::getpoint(){
-    return this->PointAdjacent;
+unsigned int Sommet::getpoint(){
+    return this->indPointAdjacent;
 }

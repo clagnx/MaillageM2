@@ -8,17 +8,17 @@
 class Sommet {
 public:
     Sommet();
-    Sommet(Face *f, Point *p);
+    Sommet(unsigned int indf, unsigned int indp);
 
-    void setFaceAdjacente(Face* f);
-    Face* getFaceAdjacente();
-    Point * getpoint();
+    void setFaceAdjacente(unsigned int indf);
+    unsigned int getFaceAdjacente();
+    unsigned int getpoint();
 
 
 
     private:
-        Face * faceAdjacente;
-        Point* PointAdjacent;
+        unsigned int indFaceAdjacente;
+        unsigned int indPointAdjacent;
 };
 #endif // SOMMET
 

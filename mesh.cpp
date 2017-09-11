@@ -21,16 +21,20 @@ Mesh::Mesh(){
     vect.push_back(p3);
     vect.push_back(p2);
     vect.push_back(p4);
+    vectPoint.push_back(p1);
+    vectPoint.push_back(p3);
+    vectPoint.push_back(p2);
+    vectPoint.push_back(p4);
 
    std::cout<<"vect sozr : "<<vect.size()<<std::endl;
 
     Face* f = new Face(vect);
     vectFace.push_back(*f);
 
-    vectSommet.push_back(new Sommet(f, p1));
-    vectSommet.push_back(new Sommet(f, p2));
-    vectSommet.push_back(new Sommet(f, p3));
-    vectSommet.push_back(new Sommet(f, p4));
+    vectSommet.push_back(new Sommet(vectFace.size()-1, 1));
+    vectSommet.push_back(new Sommet(vectFace.size()-1, 2));
+    vectSommet.push_back(new Sommet(vectFace.size()-1, 3));
+    vectSommet.push_back(new Sommet(vectFace.size()-1, 4));
 }
 
 Mesh::Mesh(const char* c){
@@ -73,20 +77,14 @@ Mesh::Mesh(const char* c){
             f = new Face(vecadd);
             vectFace.push_back(*f);
 
-            if(int inda = ifpointexist(vecpoint[a]) == -1){
-                vectSommet.push_back(new Sommet(f, vecpoint[a]));
-            }else{
-                vectSommet[inda]->setFaceAdjacente(f);
+            if(ifpointexist(vecpoint[a]) == -1){
+                vectSommet.push_back(new Sommet(vectFace.size()-1, a));
             }
-            if(int indb = ifpointexist(vecpoint[b]) == -1){
-                vectSommet.push_back(new Sommet(f, vecpoint[b]));
-            }else{
-                vectSommet[indb]->setFaceAdjacente(f);
+            if(ifpointexist(vecpoint[b]) == -1){
+                vectSommet.push_back(new Sommet(vectFace.size()-1, b));
             }
-            if(int indc = ifpointexist(vecpoint[c]) == -1){
-                vectSommet.push_back(new Sommet(f, vecpoint[c]));
-            }else{
-                vectSommet[indc]->setFaceAdjacente(f);
+            if(ifpointexist(vecpoint[c]) == -1){
+                vectSommet.push_back(new Sommet(vectFace.size()-1, c));
             }
 
             break;
@@ -99,10 +97,18 @@ Mesh::Mesh(const char* c){
             f = new Face(vecadd);
             vectFace.push_back(*f);
 
-            vectSommet.push_back(new Sommet(f, vecpoint[a]));
-            vectSommet.push_back(new Sommet(f, vecpoint[b]));
-            vectSommet.push_back(new Sommet(f, vecpoint[c]));
-            vectSommet.push_back(new Sommet(f, vecpoint[d]));
+            if(ifpointexist(vecpoint[a]) == -1){
+                vectSommet.push_back(new Sommet(vectFace.size()-1, a));
+            }
+            if(ifpointexist(vecpoint[b]) == -1){
+                vectSommet.push_back(new Sommet(vectFace.size()-1, b));
+            }
+            if(ifpointexist(vecpoint[c]) == -1){
+                vectSommet.push_back(new Sommet(vectFace.size()-1, c));
+            }
+            if(ifpointexist(vecpoint[d]) == -1){
+                vectSommet.push_back(new Sommet(vectFace.size()-1, d));
+            }
             break;
         default:
             fichier >> a >> b >> c;
@@ -112,9 +118,15 @@ Mesh::Mesh(const char* c){
             f = new Face(vecadd);
             vectFace.push_back(*f);
 
-            vectSommet.push_back(new Sommet(f, vecpoint[a]));
-            vectSommet.push_back(new Sommet(f, vecpoint[b]));
-            vectSommet.push_back(new Sommet(f, vecpoint[c]));
+            if(ifpointexist(vecpoint[a]) == -1){
+                vectSommet.push_back(new Sommet(vectFace.size()-1, a));
+            }
+            if(ifpointexist(vecpoint[b]) == -1){
+                vectSommet.push_back(new Sommet(vectFace.size()-1, b));
+            }
+            if(ifpointexist(vecpoint[c]) == -1){
+                vectSommet.push_back(new Sommet(vectFace.size()-1, c));
+            }
             break;
         }
 
@@ -141,8 +153,8 @@ void Mesh::draw(){
 
 int Mesh::ifpointexist(Point *p){
     int ind = -1;
-    for(unsigned int i=0; i < vectSommet.size(); i++){
-        if(vectSommet[i]->getpoint() == p){
+    for(unsigned int i=0; i < vectPoint.size(); i++){
+        if(vectPoint[i] == p){
             ind = i;
         }
     }
